@@ -1,1 +1,2 @@
-# newGASU.github.io
+## Обучающий проект users-app
+Версия: 2.0
