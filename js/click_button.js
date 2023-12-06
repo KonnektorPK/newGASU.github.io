@@ -97,15 +97,15 @@ let touchStartTime;
 myModal.addEventListener('touchstart', (event) => {
   touchStartTime = new Date().getTime();
   event.preventDefault();
-}, { passive: true });
+});
 
 myModal.addEventListener('touchend', (event) => {
   const touchEndTime = new Date().getTime();
-  event.preventDefault();
   if (touchEndTime - touchStartTime > 100 && isResizing) {
     myModal.classList.add('hide');
   }
   isResizing = false;
+  event.preventDefault();
 });
 
 myModal.addEventListener('touchmove', (event) => {
@@ -113,4 +113,4 @@ myModal.addEventListener('touchmove', (event) => {
     isResizing = true;
   }
   event.preventDefault();
-}, { passive: true });
+});
