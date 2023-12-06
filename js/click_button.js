@@ -93,21 +93,24 @@ document.querySelector('#exit').addEventListener('click', () => {
 
 let isResizing = false;
 let touchStartTime;
-myModal.addEventListener('touchstart', () => {
-  touchStartTime = new Date().getTime();
-});
 
-myModal.addEventListener('touchend', () => {
+myModal.addEventListener('touchstart', (event) => {
+  touchStartTime = new Date().getTime();
+  event.preventDefault();
+}, { passive: true });
+
+myModal.addEventListener('touchend', (event) => {
   const touchEndTime = new Date().getTime();
-  event.preventDefault()
+  event.preventDefault();
   if (touchEndTime - touchStartTime > 100 && isResizing) {
     myModal.classList.add('hide');
   }
   isResizing = false;
 });
 
-myModal.addEventListener('touchmove', (e) => {
-  if (e.touches[0].clientY > myModal.offsetTop) {
+myModal.addEventListener('touchmove', (event) => {
+  if (event.touches[0].clientY > myModal.offsetTop) {
     isResizing = true;
   }
-});
+  event.preventDefault();
+}, { passive: true });
